@@ -19,6 +19,7 @@ import com.example.ecommerce.specification.OrderItemSpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.weaver.ast.Or;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -34,10 +35,15 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class OrderItemServiceimpl implements OrderItemService {
+    @Autowired
     private OrderRepository orderRepository;
+    @Autowired
     private OrderItemRepository orderItemRepository;
+    @Autowired
     private ProductRepository productRepository;
+    @Autowired
     private UserService userService;
+    @Autowired
     private EntityDtoMapper entityDtoMapper;
 
     @Override

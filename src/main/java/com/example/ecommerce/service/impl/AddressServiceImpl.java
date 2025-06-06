@@ -7,11 +7,14 @@ import com.example.ecommerce.entity.User;
 import com.example.ecommerce.repository.AddressRepository;
 import com.example.ecommerce.service.AddressService;
 import com.example.ecommerce.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AddressServiceImpl implements AddressService {
+    @Autowired
     private AddressRepository addressRepository;
+    @Autowired
     private UserService userService;
 
     @Override

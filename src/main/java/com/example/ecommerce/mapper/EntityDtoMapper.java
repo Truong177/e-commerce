@@ -3,7 +3,9 @@ package com.example.ecommerce.mapper;
 import com.example.ecommerce.dto.*;
 import com.example.ecommerce.entity.*;
 import org.aspectj.weaver.ast.Or;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EntityDtoMapper {
     //user entity to user DTO
     public UserDto mapUserToDtoBasic(User user){

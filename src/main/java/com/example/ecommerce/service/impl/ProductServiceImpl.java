@@ -11,6 +11,7 @@ import com.example.ecommerce.repository.ProductRepository;
 import com.example.ecommerce.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,9 +23,11 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
-
+    @Autowired
     private ProductRepository productRepository;
+    @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
     private EntityDtoMapper entityDtoMapper;
 
     @Override
@@ -107,7 +110,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Response searchProduct(String searchValue) {
         List<Product> products = productRepository.findByNameContainingOrDescriptionContaining(searchValue, searchValue);
-        if (products.isEmpty()){
+        if (products.isEmpty()) {
             throw new NotFoundException("No product found");
         }
         List<ProductDto> productDtoList = products.stream().map(entityDtoMapper::mapProductToDtoBasic).collect(Collectors.toList());

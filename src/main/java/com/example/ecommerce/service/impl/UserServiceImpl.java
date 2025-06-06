@@ -10,6 +10,7 @@ import com.example.ecommerce.exception.InvalidCredentialsException;
 import com.example.ecommerce.mapper.EntityDtoMapper;
 import com.example.ecommerce.repository.UserRepository;
 import com.example.ecommerce.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,9 +22,13 @@ import java.util.List;
 import static org.hibernate.query.sqm.tree.SqmNode.log;
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
     private JwtUtils jwtUtils;
+    @Autowired
     private EntityDtoMapper entityDtoMapper;
 
 
@@ -37,7 +42,7 @@ public class UserServiceImpl implements UserService {
                 .name(registrationRequest.getName())
                 .email(registrationRequest.getEmail())
                 .password(passwordEncoder.encode(registrationRequest.getPassword()))
-                .password(registrationRequest.getPassword())
+                .phoneNumber(registrationRequest.getPhoneNumber())
                 .role(role)
                 .build();
         User savedUser = userRepository.save(user);
