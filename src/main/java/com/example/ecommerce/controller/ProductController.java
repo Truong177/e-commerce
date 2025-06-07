@@ -26,13 +26,16 @@ public class ProductController {
                                                   @RequestParam String name,
                                                   @RequestParam String description,
                                                   @RequestParam BigDecimal price) {
-        if (categoryId != null || image.isEmpty() || name.isEmpty() || description.isEmpty() || price == null) {
-            throw new InvalidCredentialsException("All file are required");
+        if (categoryId == null || image == null || image.isEmpty()
+                || name == null || name.isEmpty()
+                || description == null || description.isEmpty()
+                || price == null) {
+            throw new InvalidCredentialsException("All fields are required");
         }
         return ResponseEntity.ok(productService.createProduct(categoryId, image, name, description, price));
     }
 
-    @PostMapping("/update/{productId}")
+    @PutMapping("/update/{productId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> updateProduct(
             @PathVariable Long productId,

@@ -27,13 +27,13 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.getAllCategory());
     }
 
-    @PutMapping("/update{categoryId}")
+    @PutMapping("/update/{categoryId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> updateCategory(@PathVariable long categoryId, @RequestBody CategoryDto categoryDto) {
         return ResponseEntity.ok(categoryService.updateCategory(categoryId, categoryDto));
     }
 
-    @DeleteMapping("/delete{categoryId}")
+    @DeleteMapping("/delete/{categoryId}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response> deleteCategory(@PathVariable long categoryId) {
         return ResponseEntity.ok(categoryService.deleteCategory(categoryId));
