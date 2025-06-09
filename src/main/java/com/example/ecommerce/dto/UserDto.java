@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -26,7 +27,7 @@ public class UserDto {
     private String password;
     private String phoneNumber;
     private String role;
-    private List<OrderItemDto> orderItemList;
+    private List<OrderItemDto> orderItemList = new ArrayList<>();
     private AddressDto address;
     private LocalDateTime createdAt;
 }
